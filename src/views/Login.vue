@@ -32,6 +32,7 @@ export default {
   methods: {
     login () {
       const payload = this.username
+      localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
       this.$router.push('/lobby')
       // this.$store.dispatch('login', payload)
