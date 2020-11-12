@@ -27,13 +27,6 @@
       </div>
     </div>
 
-    <!-- <button @click="test">
-        klik me
-        <div ref="cobaKlik"></div>
-        <div ref="cobaKlik"></div>
-        <div ref="cobaKlik"></div>
-    </button> -->
-
     <audio src="../assets/audio/Pop.mp3" id="pop" ref="pop"></audio>
     <audio src="../assets/audio/Alarm.mp3" id="alarm" ref="alarm"></audio>
   </div>
@@ -45,7 +38,10 @@ export default {
     return {
       tanahSebelumnya: 0,
       selesai: null,
-      skor: 0
+      skor: 0,
+      papanSkor: '',
+      tanah: [],
+      tikus: []
     };
   },
   name: "Game",
@@ -63,12 +59,12 @@ export default {
       return Math.round(Math.random() * (max - min) + min);
     },
     munculkanTikus() {
-      const tRandom = this.randomTanah(this.$refs.tanah);
+      const tRandom = this.randomTanah(this.tanah);
       const wRandom = this.randomWaktu(300, 1300);
       tRandom.classList.add("muncul");
       setTimeout(() => {
         tRandom.classList.remove("muncul");
-        if (!selesai) {
+        if (!this.selesai) {
           this.munculkanTikus();
         }
       }, wRandom);
@@ -76,21 +72,18 @@ export default {
     mulai() {
       this.skor = 0;
       this.selesai = false;
-      this.$refs.papanSkor.textContent = 0;
+      this.papanSkor.textContent = 0;
       this.munculkanTikus();
       setTimeout(() => {
         this.selesai = true;
-        this.$refs.alarm.play();
+        alarm.play();
       }, 10000);
     },
     pukul() {
       this.skor++;
-      this.$refs.pop.play();
-      this.$refs.papanSkor.textContent = skor;
+      pop.play();
+      this.papanSkor.textContent = this.skor;
       this.parentNode.classList.remove("muncul");
-    },
-    test () {
-        console.log(this.$refs)
     }
   },
   created() {
@@ -101,8 +94,13 @@ export default {
     // const alarm = document.querySelector("#alarm");
   },
   mounted() {
-    this.$refs.tikus.forEach(t => {
-      t.addEventListener("click", pukul);
+    this.tanah = document.querySelectorAll(".tanah");
+    this.tikus = document.querySelectorAll(".tikus");
+    this.papanSkor = document.querySelector(".papan-skor");
+    const pop = document.querySelector("#pop");
+    const alarm = document.querySelector("#alarm");
+    this.tikus.forEach(t => {
+      t.addEventListener("click", this.pukul);
     });
   }
 };
