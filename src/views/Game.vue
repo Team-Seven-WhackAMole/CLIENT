@@ -76,6 +76,12 @@ export default {
       this.munculkanTikus();
       setTimeout(() => {
         this.selesai = true;
+        const payload = {
+          username: localStorage.username,
+          skor: this.skor,
+          roomId: this.$route.params.id
+        }
+        this.$socket.emit('gameEnd', payload);
         alarm.play();
       }, 10000);
     },
@@ -87,6 +93,13 @@ export default {
     }
   },
   created() {
+    this.$socket.on('gameEnd', roomDetail => {
+      let winner = roomDetail.users[0];
+      roomDetail.users.forEach(user => {
+        if (user.skor > winner.skor) winner = user;
+      })
+      this.$router.push(`/lobby/${roomDetail.id}/game/result`);
+    })
     // const tanah = document.querySelectorAll(".tanah");
     // const tikus = document.querySelectorAll(".tikus");
     // const papanSkor = document.querySelector(".papan-skor");
