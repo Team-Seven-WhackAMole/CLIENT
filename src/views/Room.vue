@@ -1,12 +1,16 @@
 <template>
   <div class="container">
+    <h2
+    v-for="(ononlineUser, i) in onlineUsers"
+    :key="i"
+    class="mt-3">Welcome {{ ononlineUser }}</h2>
     <form
       @submit.prevent="room"
       class="form-inline justify-content-center mt-3"
     >
       <div class="form-group mx-sm-3 mb-2">
         <input
-          v-model="roomName"
+          v-model="nameRoom"
           type="text"
           class="form-control"
           id="createRoom"
@@ -24,7 +28,7 @@
       </div>
     </div>
 
-    <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
+    <!-- <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
       <div class="card-body">
         <h5 class="card-title">Room Name</h5>
         <p class="card-text">Status</p>
@@ -38,7 +42,7 @@
         <p class="card-text">Status</p>
         <a href="#" class="btn btn-dark">Join</a>
       </div>
-    </div>
+    </div> -->
 
     <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
       <div class="card-body">
@@ -52,18 +56,15 @@
 
 <script>
 export default {
-  name: "Lobby",
+  name: "Room",
   data() {
     return {
-      username: "",
-    };
+      nameRoom: ''
+    }
   },
-  methods: {
-    lobby() {
-      const payload = this.username;
-      localStorage.setItem("username", payload);
-      this.$socket.emit("room", payload);
-      this.$router.push("/game");
+  computed: {
+    onlineUsers() {
+      return this.$store.state.onlineUser;
     },
   },
 };
