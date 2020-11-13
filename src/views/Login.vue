@@ -7,7 +7,7 @@
     @submit.prevent="login">
       <div class="form-group">
     <label for="username">Username</label>
-    <input 
+    <input
     v-model="username"
     type="text" class="form-control" id="username" placeholder="Username">
   </div>
@@ -34,7 +34,7 @@ export default {
       const payload = this.username
       localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
-      this.$router.push('/lobby')
+      this.$router.push('/room')
       // this.$store.dispatch('login', payload)
     }
   }
