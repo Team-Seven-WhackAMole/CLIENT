@@ -5,8 +5,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    onlineUser: [],
+    rooms: [],
+    activeRoom: ''
   },
   mutations: {
+    SOCKET_login(state, payload) {
+      state.rooms = payload
+    },
+    SOCKET_updateRoom (state, payload) {
+      state.rooms = payload
+    },
+    SOCKET_allRoom (state, payload) {
+      state.rooms = payload
+    },
+    SOCKET_roomDetail (state, payload) {
+      state.activeRoom = payload
+    }
   },
   actions: {
   },

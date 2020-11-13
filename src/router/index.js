@@ -1,25 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import 'bootstrap/dist/css/bootstrap.css'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: Login
   },
   {
-    path: '/game',
+    path: '/lobby',
+    name: 'Lobby',
+    component: () => import('../views/Lobby.vue'),
+  },
+  {
+    path: '/game/:roomName',
     name: 'Game',
     component: () => import('../views/Game.vue')
-  },
-  {
-    path: '/WhackGame',
-    name: 'WhackGame',
-    component: () => import('../views/WhackGame.vue')
   }
 ]
 
