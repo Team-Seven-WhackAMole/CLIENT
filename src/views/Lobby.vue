@@ -32,7 +32,7 @@
                 </div>
               </div>
             </div>
-            <button 
+            <button
             v-if="!room.status"
             @click="joinRoom(room.name)" class="btn btn-info btn-block mt-4">Join</button>
           </div>
@@ -45,22 +45,22 @@
 
 <script>
 export default {
-  name: "Lobby",
-  data() {
+  name: 'Lobby',
+  data () {
     return {
-      username: "",
-      newRoom: ""
-    };
+      username: '',
+      newRoom: ''
+    }
   },
   methods: {
-    createRoom() {
+    createRoom () {
       const payload = {
         admin: localStorage.username,
         room: this.newRoom
-      };
+      }
       this.$socket.emit('createRoom', payload)
     },
-    joinRoom(roomName) {
+    joinRoom (roomName) {
       const payload = {
         username: localStorage.username,
         roomName: roomName
@@ -70,11 +70,11 @@ export default {
     }
   },
   computed: {
-    rooms() {
+    rooms () {
       return this.$store.state.rooms
     }
   }
-};
+}
 </script>
 
 <style scoped>
