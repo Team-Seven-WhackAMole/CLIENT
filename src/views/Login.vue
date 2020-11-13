@@ -34,7 +34,7 @@ export default {
       const payload = this.username
       localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
-      this.$router.push('/room')
+      this.$router.push('/lobby')
       // this.$store.dispatch('login', payload)
     }
   }
