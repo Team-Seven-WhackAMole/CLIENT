@@ -11,8 +11,8 @@
     v-model="username"
     type="text" class="form-control" id="username" placeholder="Username">
   </div>
+    <button class="btn btn-dark btn-block" type="submit">Login</button>
     </form>
-    <button class="btn btn-dark btn-block">Login</button>
       </div>
     </div>
   </div>
@@ -32,9 +32,10 @@ export default {
   methods: {
     login () {
       const payload = this.username
+      console.log(payload)
       localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
-      this.$router.push('/room')
+      this.$router.push('/lobby')
       // this.$store.dispatch('login', payload)
     }
   }

@@ -8,7 +8,8 @@ export default new Vuex.Store({
     onlineUser: []
   },
   mutations: {
-    SOCKET_newUser (state, payload) {
+    SOCKET_NEW_USER(state, payload) {
+      console.log(payload, '<<<< ini data payload');
       state.onlineUser = payload
     }
   },
