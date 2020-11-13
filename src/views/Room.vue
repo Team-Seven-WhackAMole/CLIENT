@@ -1,80 +1,76 @@
 <template>
-  <div class="container">
-    <h2
-    v-for="(ononlineUser, i) in onlineUsers"
-    :key="i"
-    class="mt-3">Welcome {{ ononlineUser }}</h2>
-    <form
-      @submit.prevent="room"
-      class="form-inline justify-content-center mt-3"
-    >
-      <div class="form-group mx-sm-3 mb-2">
-        <input
-          v-model="nameRoom"
-          type="text"
-          class="form-control"
-          id="createRoom"
-          placeholder="Please your room name"
-        />
-      </div>
-      <button type="submit" class="btn btn-dark mb-2">Create Room</button>
-    </form>
-
-    <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Room Name</h5>
-        <p class="card-text">Status</p>
-        <a href="#" class="btn btn-dark">Join</a>
-      </div>
-    </div>
-
-    <!-- <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Room Name</h5>
-        <p class="card-text">Status</p>
-        <a href="#" class="btn btn-dark">Join</a>
-      </div>
-    </div>
-
-    <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Room Name</h5>
-        <p class="card-text">Status</p>
-        <a href="#" class="btn btn-dark">Join</a>
-      </div>
-    </div> -->
-
-    <div class="card ml-3 mr-3 mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Room Name</h5>
-        <p class="card-text">Status</p>
-        <a href="#" class="btn btn-dark">Join</a>
+<div class="room">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="card shadow shadow-lg bg bg-warning" style="width: 40rem; margin-top: 140px">
+        <div class="card-body">
+          <h5 class="card-title">Welcome to {{playersInRoom.name}}</h5>
+          <h6 class="card-text">Number of players: {{playersInRoom.users.length}}</h6>
+          <a href="#" @click="changeStatus" class="btn btn-success mt-5">let's play</a>
+        </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import Game from './Game.vue'
+
 export default {
   name: "Room",
-  data() {
-    return {
-      nameRoom: ''
+  component: Game,
+  methods: {
+    toGame(roomName) {
+      const payload = {
+        username: localStorage.username,
+        roomName: roomName
+      }
+      this.$router.push(`/game/${roomName}`)
+    },
+    changeStatus() {
+      iStart.status = true;
     }
   },
   computed: {
-    onlineUsers() {
-      return this.$store.state.onlineUser;
+    playersInRoom() {
+      return this.$store.state.activeRoom
     },
-  },
+    iStart() {
+      return this.$store.state.activeRoom.status
+    }
+  }
 };
 </script>
 
 <style scoped>
-.container {
-  background-image: url("../assets/mole-bg.jpg");
+.room {
+  background-image: url("../assets/img/poly-mount.jpg");
+  background-size: 100%;
+  height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+
+.container {
+  margin-top: 8%;
+}
+
+.inner {
+  overflow: hidden;
+}
+
+.inner img {
+  transition: all 1.5s ease;
+}
+
+.inner:hover img {
+  transform: scale(1.5);
+}
+
+.card-body h5,
+h6 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 </style>
