@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="room" v-if="!iStart">
   <div class="container-fluid">
     <div class="row justify-content-center">
@@ -11,6 +12,10 @@
       </div>
     </div>
   </div>
+</div>
+  <Game
+  v-else>
+  </Game>
 </div>
 </template>
 
@@ -29,7 +34,7 @@ export default {
       this.$router.push(`/game/${roomName}`)
     },
     changeStatus() {
-      this.$store.emit('changeStatus')
+      this.$store.commit('changeStatus')
     }
   },
   computed: {

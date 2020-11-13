@@ -32,7 +32,9 @@
                 </div>
               </div>
             </div>
-            <button @click="joinRoom(room.name)" class="btn btn-info btn-block mt-4">Join</button>
+            <button 
+            v-if="!room.status"
+            @click="joinRoom(room.name)" class="btn btn-info btn-block mt-4">Join</button>
           </div>
         </div>
       </div>
