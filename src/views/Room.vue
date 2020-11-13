@@ -1,12 +1,12 @@
 <template>
-<div class="room">
+<div class="room" v-if="!iStart">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="card shadow shadow-lg bg bg-warning" style="width: 40rem; margin-top: 140px">
         <div class="card-body">
           <h5 class="card-title">Welcome to {{playersInRoom.name}}</h5>
           <h6 class="card-text">Number of players: {{playersInRoom.users.length}}</h6>
-          <a href="#" @click="changeStatus" class="btn btn-success mt-5">let's play</a>
+          <a href="" @click.prevent="changeStatus" class="btn btn-success mt-5">let's play</a>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@ export default {
       this.$router.push(`/game/${roomName}`)
     },
     changeStatus() {
-      iStart.status = true;
+      this.$store.emit('changeStatus')
     }
   },
   computed: {
