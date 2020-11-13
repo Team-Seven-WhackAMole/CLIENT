@@ -10,9 +10,8 @@ export default new Vuex.Store({
     activeRoom: ''
   },
   mutations: {
-    SOCKET_NEW_USER(state, payload) {
-      console.log(payload, '<<<< ini data payload');
-      state.onlineUser = payload
+    SOCKET_login(state, payload) {
+      state.rooms = payload
     },
     SOCKET_updateRoom (state, payload) {
       state.rooms = payload

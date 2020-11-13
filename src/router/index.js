@@ -12,14 +12,14 @@ const routes = [
   },
   {
     path: '/lobby',
-    name: 'Room',
-    component: () => import('../views/Room.vue')
-  },
-  {
-    path: '/room',
     name: 'Lobby',
     component: () => import('../views/Lobby.vue')
   },
+  // {
+  //   path: '/room',
+  //   name: 'Lobby',
+  //   component: () => import('../views/Lobby.vue')
+  // },
   {
     path: '/game',
     name: 'Game',
