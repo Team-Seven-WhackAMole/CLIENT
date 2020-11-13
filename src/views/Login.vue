@@ -8,8 +8,8 @@
             <label for="username">Username</label>
             <input v-model="username" type="text" class="form-control" id="username" placeholder="Username">
           </div>
+          <button type="submit" class="btn btn-dark btn-block">Login</button>
         </form>
-        <button class="btn btn-dark btn-block">Login</button>
       </div>
     </div>
   </div>
