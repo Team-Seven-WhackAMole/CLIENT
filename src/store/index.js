@@ -22,9 +22,9 @@ export default new Vuex.Store({
     SOCKET_roomDetail (state, payload) {
       state.activeRoom = payload
     },
-    changeStatus(state) {
+    SOCKET_startGame (state) {
       state.activeRoom.status = true
-    }
+    },
   },
   actions: {
   },

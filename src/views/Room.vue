@@ -35,6 +35,7 @@ export default {
       this.$router.push(`/game/${roomName}`)
     },
     changeStatus() {
+      this.$socket.emit('startGame', this.$store.state.activeRoom.name)
       this.$store.commit('changeStatus')
     }
   },
