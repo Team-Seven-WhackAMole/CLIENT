@@ -8,7 +8,7 @@
             <label for="username">Username</label>
             <input v-model="username" type="text" class="form-control" id="username" placeholder="Username">
           </div>
-          <button type="submit" class="btn btn-dark btn-block">Login</button>
+          <button class="btn btn-dark btn-block" type="submit">Login</button>
         </form>
       </div>
     </div>
@@ -31,9 +31,8 @@ export default {
       const payload = this.username
       localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
-      this.$router.push({
-        name: 'Lobby'
-      })
+      this.$router.push('/lobby')
+      // this.$store.dispatch('login', payload)
     }
   }
 }

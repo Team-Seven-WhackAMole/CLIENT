@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import Room from '../components/Room'
 
 Vue.use(VueRouter)
 
@@ -14,13 +13,7 @@ const routes = [
   {
     path: '/lobby',
     name: 'Lobby',
-    component: () => import('../views/Lobby.vue'),
-    children: [
-      {
-        path: '/cek',
-        component: Room
-      },
-    ]
+    component: () => import('../views/Lobby.vue')
   },
   {
     path: '/game/:id',
