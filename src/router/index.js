@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/lobby',
     name: 'Lobby',
-    component: () => import('../views/Lobby.vue'),
+    component: () => import('../views/Lobby.vue')
   },
   {
     path: '/lobby/:roomName',
     name: 'Room',
-    component: () => import('../views/Room.vue'),
+    component: () => import('../views/Room.vue')
   },
   {
     path: '/game/:roomName',

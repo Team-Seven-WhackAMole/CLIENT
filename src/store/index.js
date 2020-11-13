@@ -10,7 +10,7 @@ export default new Vuex.Store({
     activeRoom: ''
   },
   mutations: {
-    SOCKET_login(state, payload) {
+    SOCKET_login (state, payload) {
       state.rooms = payload
     },
     SOCKET_updateRoom (state, payload) {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
     SOCKET_startGame (state) {
       state.activeRoom.status = true
-    },
+    }
   },
   actions: {
   },

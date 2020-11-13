@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       tanahSebelumnya: 0,
       selesai: null,
@@ -42,76 +42,76 @@ export default {
       papanSkor: '',
       tanah: [],
       tikus: []
-    };
+    }
   },
-  name: "Game",
+  name: 'Game',
   methods: {
-    randomTanah(tanah) {
-      const t = Math.floor(Math.random() * tanah.length);
-      const tRandom = tanah[t];
+    randomTanah (tanah) {
+      const t = Math.floor(Math.random() * tanah.length)
+      const tRandom = tanah[t]
       if (tRandom == this.tanahSebelumnya) {
-        this.randomTanah(tanah);
+        this.randomTanah(tanah)
       }
-      this.tanahSebelumnya = tRandom;
-      return tRandom;
+      this.tanahSebelumnya = tRandom
+      return tRandom
     },
-    randomWaktu(min, max) {
-      return Math.round(Math.random() * (max - min) + min);
+    randomWaktu (min, max) {
+      return Math.round(Math.random() * (max - min) + min)
     },
-    munculkanTikus() {
-      const tRandom = this.randomTanah(this.tanah);
-      const wRandom = this.randomWaktu(300, 1300);
-      tRandom.classList.add("muncul");
+    munculkanTikus () {
+      const tRandom = this.randomTanah(this.tanah)
+      const wRandom = this.randomWaktu(300, 1300)
+      tRandom.classList.add('muncul')
       setTimeout(() => {
-        tRandom.classList.remove("muncul");
+        tRandom.classList.remove('muncul')
         if (!this.selesai) {
-          this.munculkanTikus();
+          this.munculkanTikus()
         }
-      }, wRandom);
+      }, wRandom)
     },
-    mulai() {
-      this.skor = 0;
-      this.selesai = false;
-      this.papanSkor.textContent = 0;
-      this.munculkanTikus();
+    mulai () {
+      this.skor = 0
+      this.selesai = false
+      this.papanSkor.textContent = 0
+      this.munculkanTikus()
       setTimeout(() => {
-        this.selesai = true;
+        this.selesai = true
         const payload = {
           username: localStorage.username,
           skor: this.skor,
           roomId: this.$route.params.id
         }
-        this.$socket.emit('gameEnd', payload);
-        alarm.play();
-      }, 10000);
+        this.$socket.emit('gameEnd', payload)
+        alarm.play()
+      }, 10000)
     },
-    pukul() {
-      this.skor++;
-      pop.play();
-      this.papanSkor.textContent = this.skor;
-      this.parentNode.classList.remove("muncul");
+    pukul () {
+      this.skor++
+      pop.play()
+      this.papanSkor.textContent = this.skor
+      this.parentNode.classList.remove('muncul')
     }
   },
-  created() {
+  created () {
     this.$socket.on('gameEnd', roomDetail => {
-      let winner = roomDetail.users[0];
+      let winner = roomDetail.users[0]
       roomDetail.users.forEach(user => {
-        if (user.skor > winner.skor) winner = user;
+        if (user.skor > winner.skor) winner = user
       })
-      this.$router.push(`/lobby/${roomDetail.id}/game/result`);
+      this.$router.push(`/lobby/${roomDetail.id}/game/result`)
     })
   },
-  mounted() {
-    this.tanah = document.querySelectorAll(".tanah");
-    this.tikus = document.querySelectorAll(".tikus");
-    this.papanSkor = document.querySelector(".papan-skor");
-    const pop = document.querySelector("#pop");
-    const alarm = document.querySelector("#alarm");
+  mounted () {
+    this.tanah = document.querySelectorAll('.tanah')
+    this.tikus = document.querySelectorAll('.tikus')
+    this.papanSkor = document.querySelector('.papan-skor')
+    const pop = document.querySelector('#pop')
+    const alarm = document.querySelector('#alarm')
     this.tikus.forEach(t => {
-      t.addEventListener("click", this.pukul);
-    });
+      t.addEventListener('click', this.pukul)
+    })
   }
-};
+}
 </script>
 
 <style>

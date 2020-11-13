@@ -21,13 +21,13 @@
 
 export default {
   name: 'Login',
-  data() {
+  data () {
     return {
       username: ''
     }
   },
   methods: {
-    login() {
+    login () {
       const payload = this.username
       console.log(payload)
       localStorage.setItem('username', payload)

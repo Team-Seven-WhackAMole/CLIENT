@@ -22,32 +22,32 @@
 import Game from './Game.vue'
 
 export default {
-  name: "Room",
+  name: 'Room',
   components: {
     Game
   },
   methods: {
-    toGame(roomName) {
+    toGame (roomName) {
       const payload = {
         username: localStorage.username,
         roomName: roomName
       }
       this.$router.push(`/game/${roomName}`)
     },
-    changeStatus() {
+    changeStatus () {
       this.$socket.emit('startGame', this.$store.state.activeRoom.name)
       this.$store.commit('changeStatus')
     }
   },
   computed: {
-    playersInRoom() {
+    playersInRoom () {
       return this.$store.state.activeRoom
     },
-    iStart() {
+    iStart () {
       return this.$store.state.activeRoom.status
     }
   }
-};
+}
 </script>
 
 <style scoped>

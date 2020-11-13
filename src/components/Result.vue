@@ -21,9 +21,9 @@
 <script>
 export default {
   name: 'Result',
-  data() {
+  data () {
     return {
-      img: "https://img.freepik.com/free-vector/congratulations-lettering-message-vector-greeting_7233-463.jpg?size=626&ext=jpg"
+      img: 'https://img.freepik.com/free-vector/congratulations-lettering-message-vector-greeting_7233-463.jpg?size=626&ext=jpg'
     }
   }
 }
