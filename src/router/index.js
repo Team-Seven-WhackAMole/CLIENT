@@ -1,25 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import 'bootstrap/dist/css/bootstrap.css'
+import Login from '../views/Login.vue'
+import Room from '../components/Room'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: Login
   },
   {
-    path: '/game',
+    path: '/lobby',
+    name: 'Lobby',
+    component: () => import('../views/Lobby.vue'),
+    children: [
+      {
+        path: '/cek',
+        component: Room
+      },
+    ]
+  },
+  {
+    path: '/game/:id',
     name: 'Game',
-    component: () => import('../views/Game.vue')
-  },
-  {
-    path: '/WhackGame',
-    name: 'WhackGame',
-    component: () => import('../views/WhackGame.vue')
+    component: () => import('../views/Game.vue'),
   }
 ]
 

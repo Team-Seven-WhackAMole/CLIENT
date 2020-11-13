@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    onlineUser: []
   },
   mutations: {
+    SOCKET_newUser (state, payload) {
+      state.onlineUser = payload
+    }
   },
   actions: {
   },
