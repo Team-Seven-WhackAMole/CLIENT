@@ -3,16 +3,13 @@
   <div class="container d-flex h-100 justify-content-center align-items-center">
     <div class="card shadow bg-info">
       <div class="card-body">
-    <form
-    @submit.prevent="login">
-      <div class="form-group">
-    <label for="username">Username</label>
-    <input
-    v-model="username"
-    type="text" class="form-control" id="username" placeholder="Username">
-  </div>
-    </form>
-    <button class="btn btn-dark btn-block">Login</button>
+        <form @submit.prevent="login">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input v-model="username" type="text" class="form-control" id="username" placeholder="Username">
+          </div>
+          <button class="btn btn-dark btn-block" type="submit">Login</button>
+        </form>
       </div>
     </div>
   </div>
@@ -24,14 +21,15 @@
 
 export default {
   name: 'Login',
-  data () {
+  data() {
     return {
       username: ''
     }
   },
   methods: {
-    login () {
+    login() {
       const payload = this.username
+      console.log(payload)
       localStorage.setItem('username', payload)
       this.$socket.emit('login', payload)
       this.$router.push('/lobby')
@@ -42,12 +40,10 @@ export default {
 </script>
 
 <style scoped>
-
-.login{
+.login {
   background-image: url('../assets/mole-bg.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
 }
-
 </style>

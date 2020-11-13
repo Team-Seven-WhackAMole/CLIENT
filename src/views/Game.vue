@@ -1,35 +1,35 @@
 <template>
-  <div class="game">
-    <h1>Pukul Tikus Tanah</h1>
+<div class="game">
+  <h1>Whack-a-Mole</h1>
 
-    <button type="button" class="mulai" @click="mulai">Mulai</button>
+  <button type="button" class="mulai btn btn-warning" @click="mulai">Mulai</button>
 
-    <h2 class="papan-skor" ref="papanSkor">0</h2>
+  <h2 class="papan-skor" ref="papanSkor">0</h2>
 
-    <div class="container">
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
-      <div class="tanah" ref="tanah">
-        <div class="tikus" ref="tikus"></div>
-      </div>
+  <div class="container">
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
     </div>
-
-    <audio src="../assets/audio/Pop.mp3" id="pop" ref="pop"></audio>
-    <audio src="../assets/audio/Alarm.mp3" id="alarm" ref="alarm"></audio>
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
+    </div>
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
+    </div>
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
+    </div>
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
+    </div>
+    <div class="tanah" ref="tanah">
+      <div class="tikus" ref="tikus"></div>
+    </div>
   </div>
+
+  <audio src="../assets/audio/Pop.mp3" id="pop" ref="pop"></audio>
+  <audio src="../assets/audio/Alarm.mp3" id="alarm" ref="alarm"></audio>
+</div>
 </template>
 
 <script>
@@ -100,11 +100,6 @@ export default {
       })
       this.$router.push(`/lobby/${roomDetail.id}/game/result`);
     })
-    // const tanah = document.querySelectorAll(".tanah");
-    // const tikus = document.querySelectorAll(".tikus");
-    // const papanSkor = document.querySelector(".papan-skor");
-    // const pop = document.querySelector("#pop");
-    // const alarm = document.querySelector("#alarm");
   },
   mounted() {
     this.tanah = document.querySelectorAll(".tanah");
@@ -123,9 +118,11 @@ export default {
 body {
   background: url("../assets/img/horizont.jpg");
   background-size: 100%;
+  height: 100vh;
   position: relative;
-  top: 50px;
+  overflow: hidden;
 }
+
 h1,
 h2 {
   font-size: 60px;
@@ -140,7 +137,7 @@ button {
 }
 
 .container {
-  width: 600px;
+  width: 700px;
   margin: auto;
   cursor: url("../assets/img/palu1.png"), auto;
 }
