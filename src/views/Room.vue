@@ -36,7 +36,6 @@ export default {
     },
     changeStatus () {
       this.$socket.emit('startGame', this.$store.state.activeRoom.name)
-      this.$store.commit('changeStatus')
     }
   },
   computed: {

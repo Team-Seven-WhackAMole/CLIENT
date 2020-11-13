@@ -7,10 +7,8 @@
           <img :src="img" class="card-img-top" alt="...">
         </div>
         <div class="card-body">
-          <h5 class="card-title">Player Name</h5>
-          <h6 class="card-text">U got 1st place</h6>
-          <h6 class="card-text">U got xx points</h6>
-          <a href="#" class="btn btn-success">Play again</a>
+          <h5 class="card-title">Winner</h5>
+          <h6 class="card-text">{{ winner }}</h6>
         </div>
       </div>
     </div>
@@ -24,6 +22,11 @@ export default {
   data () {
     return {
       img: 'https://img.freepik.com/free-vector/congratulations-lettering-message-vector-greeting_7233-463.jpg?size=626&ext=jpg'
+    }
+  },
+  computed: {
+    winner () {
+      return this.$store.state.winner
     }
   }
 }

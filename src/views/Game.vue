@@ -74,32 +74,54 @@ export default {
       this.selesai = false
       this.papanSkor.textContent = 0
       this.munculkanTikus()
-      setTimeout(() => {
-        this.selesai = true
-        const payload = {
-          username: localStorage.username,
-          skor: this.skor,
-          roomId: this.$route.params.id
-        }
-        this.$socket.emit('gameEnd', payload)
-        alarm.play()
-      }, 10000)
+      // setTimeout(() => {
+      //   this.selesai = true
+      //   const payload = {
+      //     username: localStorage.username,
+      //     skor: this.skor,
+      //     roomId: this.$route.params.id
+      //   }
+      //   this.$socket.emit('gameEnd', payload)
+      //   // this.endGame()
+      //   alarm.play()
+      // }, 10000)
     },
     pukul () {
       this.skor++
       pop.play()
       this.papanSkor.textContent = this.skor
       this.parentNode.classList.remove('muncul')
-    }
+    },
+    // endGame () {
+    //   this.$socket.on('gameEnd', roomDetail => {
+    //     let winner = roomDetail.users[0]
+    //     roomDetail.users.forEach(user => {
+    //       if (user.skor > winner.skor) winner = user
+    //     })
+    //     this.$router.push(`/lobby/${roomDetail.id}/game/result`)
+    //   })
+    // }
   },
-  created () {
-    this.$socket.on('gameEnd', roomDetail => {
-      let winner = roomDetail.users[0]
-      roomDetail.users.forEach(user => {
-        if (user.skor > winner.skor) winner = user
-      })
-      this.$router.push(`/lobby/${roomDetail.id}/game/result`)
-    })
+  // created () {
+  //   this.$socket.on('gameEnd', roomDetail => {
+  //     let winner = roomDetail.users[0]
+  //     roomDetail.users.forEach(user => {
+  //       if (user.skor > winner.skor) winner = user
+  //     })
+  //     this.$router.push(`/lobby/${roomDetail.id}/game/result`)
+  //   })
+  // },
+  watch: {
+    skor (val) {
+      if (val == 20) {
+        const payload = {
+          username: localStorage.username,
+          roomName: this.$store.state.activeRoom.name
+        }
+        this.$socket.emit('gameEnd', payload)
+        // this.$router.push({ path: '/result' })
+      }
+    }
   },
   mounted () {
     this.tanah = document.querySelectorAll('.tanah')
