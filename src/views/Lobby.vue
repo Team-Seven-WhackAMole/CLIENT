@@ -30,6 +30,10 @@
                     <span>{{user}}</span>
                   </div>
                 </div>
+                <button
+                v-if="!room.status" 
+                @click="joinRoom(room.name)"
+                class="btn btn-info btn-block mt-4">Join</button>
               </div>
             </div>
             <button
